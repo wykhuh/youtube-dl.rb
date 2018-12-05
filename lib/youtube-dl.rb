@@ -26,6 +26,11 @@ module YoutubeDL
     end
   end
 
+  def information(url, options = {})
+    YoutubeDL::Video.information(url, options) # Urls should be singular but oh well. url = urls. There. Go cry in a corner.
+  end
+
+
   alias_method :get, :download
 
   # Lists extractors

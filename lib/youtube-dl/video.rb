@@ -16,6 +16,11 @@ module YoutubeDL
         video
       end
       alias_method :get, :download
+
+      def information(url, options = {})
+        video = new(url, options)
+        video.information
+      end
     end
 
     # @return [YoutubeDL::Options] Download Options for the last download
@@ -85,12 +90,12 @@ module YoutubeDL
     def banned_keys
       [
         # :get_url,
-        :get_title,
-        :get_id,
-        :get_thumbnail,
-        :get_description,
-        :get_duration,
-        :get_filename,
+        # :get_title,
+        # :get_id,
+        # :get_thumbnail,
+        # :get_description,
+        # :get_duration,
+        # :get_filename,
         # :get_format
       ]
     end
@@ -104,7 +109,7 @@ module YoutubeDL
     end
 
     def grab_information_without_download # :nodoc:
-      set_information_from_json(YoutubeDL::Runner.new(url, runner_options.with({skip_download: true})).run)
+      YoutubeDL::Runner.new(url, runner_options.with({skip_download: true})).run
     end
   end
 end
